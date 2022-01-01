@@ -3,7 +3,7 @@ import org.json.JSONObject;
 
 public class Project01_B {
     public static void main(String[] args) {
-        // JSON - Java (org.json)
+        // JSON - Java (org.json) jar 설치하기
         JSONArray students = new JSONArray();
         JSONObject student = new JSONObject();
         student.put("name","홍길동");
