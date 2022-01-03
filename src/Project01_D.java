@@ -13,7 +13,7 @@ public class Project01_D {
 
         String apiURL = "";
         String client_id="";
-        String client_secret="LS9zckeXilq5ZTpwT4A5IYHeHh6zxIa0YzPDFPVU";
+        String client_secret="";
         BufferedReader io = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("주소를 입력하세요: ");
