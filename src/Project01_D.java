@@ -11,14 +11,14 @@ import java.net.URLEncoder;
 public class Project01_D {
     public static void main(String[] args) {
 
-        String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=";
+        String apiURL = "";
         String client_id="";
-        String client_secret="";
+        String client_secret="LS9zckeXilq5ZTpwT4A5IYHeHh6zxIa0YzPDFPVU";
         BufferedReader io = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("주소를 입력하세요: ");
-            String address=io.readLine();
-            String addr= URLEncoder.encode(address, "UTF-8");
+            String address=io.readLine(); //입력한 주소를 받음
+            String addr= URLEncoder.encode(address, "UTF-8"); //입력한 주소를 인코딩
             String reqUrl=apiURL + addr;
 
             // 이 객체가 유효한 주소인지 아닌지
