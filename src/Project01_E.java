@@ -11,19 +11,20 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 public class Project01_E {
-    // 지도 이미지 생성 메서드
+    // 지도 이미지 생성 메서드 ->  위도 경도 정보 받아서 이미지 파일 생성하는 것이 목표
+    //  static map = 요청된 URL 매개변수를 기반으로 웹 페이지에 표시할 수 있는 이미지로 지도를 반환
     public static void map_service(String point_x, String point_y,  String address) {
         String URL_STATICMAP = "https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?";
         try {
-            String pos=URLEncoder.encode(point_x + " " + point_y, "UTF-8");
+            String pos = URLEncoder.encode(point_x + " " + point_y, "UTF-8");
             String url = URL_STATICMAP;
             url += "center=" + point_x + "," + point_y;
             url += "&level=16&w=700&h=500";
             url += "&markers=type:t|size:mid|pos:"+pos+"|label:"+URLEncoder.encode(address, "UTF-8");
-            URL u = new URL(url);
-            HttpURLConnection conn = (HttpURLConnection)u.openConnection();
+            URL fullUrl = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection)fullUrl.openConnection();
             conn.setRequestMethod("GET");
-            conn.setRequestProperty("X-NCP-APIGW-API-KEY-ID", "");
+            conn.setRequestProperty("X-NCP-APIGW-API-KEY-ID", ""); //id pw 입력하는 방식
             conn.setRequestProperty("X-NCP-APIGW-API-KEY", "");
             int responseCode = conn.getResponseCode();
             BufferedReader br;
@@ -33,11 +34,11 @@ public class Project01_E {
                 byte[] bytes = new byte[1024];
                 // 랜덤한 이름으로 파일 생성
                 String tempname = Long.valueOf(new Date().getTime()).toString();
-                File f = new File(tempname + ".jpg");
-                f.createNewFile();
-                OutputStream outputStream = new FileOutputStream(f);
+                File f = new File(tempname + ".jpg"); // pathname에 해당되는 파일의 File 객체를 생성한다.
+                f.createNewFile(); // 주어진 이름의 파일이 없으면 새로 생성한다.
+                OutputStream outputStream = new FileOutputStream(f); // OutStream : 데이터 출력할 때
                 while ((read =is.read(bytes)) != -1) {
-                    outputStream.write(bytes, 0, read);
+                    outputStream.write(bytes, 0, read); // 버퍼의 내용을 출력한다.
                 }
                 is.close();
             } else {  // 에러 발생
@@ -66,7 +67,7 @@ public class Project01_E {
             System.out.print("주소를 입력하세요: ");
             String address=io.readLine(); //입력한 주소를 받음
             String addr= URLEncoder.encode(address, "UTF-8"); //입력한 주소를 인코딩
-            String reqUrl=apiURL + addr;
+            String reqUrl = apiURL + addr;
 
             URL url=new URL(reqUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -75,7 +76,7 @@ public class Project01_E {
             conn.setRequestProperty("X-NCP-APIGW-API-KEY",client_secret);
 
             BufferedReader br;
-            int responseCode=conn.getResponseCode(); // 200
+            int responseCode = conn.getResponseCode(); // 200
             if(responseCode==200){
                 br=new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
             }else {
@@ -111,6 +112,7 @@ public class Project01_E {
             }
             // 추가된 부분
             map_service(x,y,z);
+
         } catch (Exception e){
             e.printStackTrace();
         }
