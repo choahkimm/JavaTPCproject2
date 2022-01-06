@@ -10,10 +10,9 @@ import java.net.URLEncoder;
 
 public class Project01_D {
     public static void main(String[] args) {
-
-        String apiURL = "";
-        String client_id="";
-        String client_secret="";
+        String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=";
+        String client_id="vj0posxnc8 ";
+        String client_secret="LS9zckeXilq5ZTpwT4A5IYHeHh6zxIa0YzPDFPVU";
         BufferedReader io = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("주소를 입력하세요: ");

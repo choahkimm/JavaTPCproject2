@@ -60,7 +60,7 @@ public class Project01_E {
     public static void main(String[] args) {
 
         String apiURL = "https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=";
-        String client_id="vj0posxnc8 ";
+        String client_id="vj0posxnc8";
         String client_secret="LS9zckeXilq5ZTpwT4A5IYHeHh6zxIa0YzPDFPVU";
         BufferedReader io = new BufferedReader(new InputStreamReader(System.in));
         try {
